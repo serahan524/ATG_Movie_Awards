@@ -1,11 +1,20 @@
 import './App.css';
-import SearchMovies from './components/SearchMovies';
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
 
-function App() {
+import Home from './pages/Home';
+import UserMovieList from './pages/UserMovieList';
+import Register from './pages/Register';
+
+
+const App = () => {
   return (
-    <div className="App">
-      <SearchMovies/>
-    </div>
+   <BrowserRouter>
+      <Routes>
+        <Route path="/" element={ <Home />} />
+        <Route path="/user" element={ <UserMovieList />} />
+        <Route path="/register" element={ <Register />} />
+      </Routes>   
+   </BrowserRouter>   
   );
 }
 

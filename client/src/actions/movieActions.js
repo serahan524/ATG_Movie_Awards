@@ -1,28 +1,35 @@
-// get movies from api
+/*
+movie Actions communicate with table name "movies" which is movie stored based on user's choice
+*/
 
-import { GET_MOVIE_FAIL, GET_MOVIE_REQUEST, GET_MOVIE_SUCCESS } from "../constants/movieConstants"
 
-export const getListMovies = () => async (dispatch) => {
+import axios from 'axios';
 
-    try {
+import { GET_MOVIE_SUCCESS, ADD_MOVIE, DELETE_MOVIE } from "../constants/movieConstants"
 
-        dispatch({ type: GET_MOVIE_REQUEST})
-
-        const { data } = await axios.get('http://127.0.0.1:8000/api/')
-
-        dispatch({
+export const getListMovies = () => dispatch => {
+    axios.get('http://127.0.0.1:8000/api/movies/')
+        .then(response => dispatch({
             type: GET_MOVIE_SUCCESS,
-            payload: data
-        })
-
-    } catch(error) {
-
-        dispatch({
-            type: GET_MOVIE_FAIL,
-            payload: error.response && error.response.data.message
-        })
-
-    }
+            payload: response.data
+        }))
+        .catch(err => console.log(err))
 }
 
-export default getListMovies; 
+export const addListMovies = (item) => dispatch => {
+    axios.post('http://127.0.0.1:8000/api/movies/', item)
+        .then(response => dispatch({
+            type: ADD_MOVIE,
+            payload: response.data
+        }))
+        .catch(err => console.log(err))
+}
+
+export const deleteListMovies = (item) => dispatch => {
+    axios.delete(`http://127.0.0.1:8000/api/movies/${item}/`)
+        .then(response => dispatch({
+            type: DELETE_MOVIE,
+            payload: response.data
+        }))
+        .catch(err => console.log(err))
+}

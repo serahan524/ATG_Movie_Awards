@@ -1,13 +1,37 @@
-import { GET_MOVIE_FAIL, GET_MOVIE_REQUEST, GET_MOVIE_SUCCESS } from "../constants/movieConstants"
+import { GET_MOVIE_FAIL, GET_MOVIE_REQUEST, GET_MOVIE_SUCCESS, ADD_MOVIE, DELETE_MOVIE } from "../constants/movieConstants"
 
-export const movieListReducer = (state = { project: [] }, action) => {
+export default function movieReducer(state = { movie: [] }, action) {
     switch (action.type) {
         case GET_MOVIE_REQUEST:
-            return { loading: true, success: false, movie: []}
+            return { 
+                loading: true, 
+                success: false, 
+                userMovie: []
+            }
         case GET_MOVIE_SUCCESS:
-            return { loading: false, success: true, movie: action.payload}
+            return { 
+                loading: false, 
+                success: true, 
+                userMovie: action.payload
+            }
         case GET_MOVIE_FAIL:
-            return { loading: false, success: false, error: action.payload}
+            return { 
+                loading: false, 
+                success: false, 
+                error: action.payload
+            }
+        case ADD_MOVIE:
+            return { 
+                loading: false, 
+                success: true, 
+                userMovie: action.payload
+            }
+        case DELETE_MOVIE:
+            return { 
+                loading: false, 
+                success: true, 
+                userMovie: action.payload
+            }    
 
         default:
             return state;

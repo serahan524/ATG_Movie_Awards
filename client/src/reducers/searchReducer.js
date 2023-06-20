@@ -1,4 +1,4 @@
-import { SEARCH_MOVIE } from "../actions/types";
+import { SEARCH_MOVIE, FETCH_MOVIES } from "../constants/externalAPIConstants";
 
 const initialState = {
     text:       '',
@@ -7,7 +7,8 @@ const initialState = {
     movie:      []
 }
 
-export default function(state = initialState, action) {
+export default function searchReducer(state = initialState, action) {
+    
     switch (action.type) {
         case SEARCH_MOVIE:
             return {
@@ -15,7 +16,13 @@ export default function(state = initialState, action) {
                 text: action.payload,
                 loading: false
             } 
+        case FETCH_MOVIES:
+            return {
+                ...state,
+                movies: action.payload,
+                loading: false
+            } 
         default:
-            return state
+            return state;
     }
 }

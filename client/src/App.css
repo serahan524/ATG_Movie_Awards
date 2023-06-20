@@ -36,3 +36,7 @@
     transform: rotate(360deg);
   }
 }
+
+.nav-custom {
+  background-image: linear-gradient(#bf0000 0%, #000000 100%);
+}
