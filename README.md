@@ -3,6 +3,10 @@ Last modified: June 20, 2023
 
 This project is to display movies from OMDBApi(omdbapi.com) and saves movies into django framework. 
 
+* Short video for explaination (might take some time to upload...)
+===> https://youtu.be/TUWxVrtkMeE
+
+
 "server" folder represents backend 
 "client" folder represents frontend 
 
